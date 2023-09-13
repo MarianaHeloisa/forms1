@@ -16,7 +16,56 @@ namespace forms1
         public Form1()
         {
             InitializeComponent();
-        }   
+        }
+
+        private void UpdateListView()
+        {
+            listView1.Items.Clear();
+
+            Connection conn = new Connection();
+            SqlCommand sqlCom = new SqlCommand();
+
+            sqlCom.Connection = conn.ReturnConnection();
+            sqlCom.CommandText = "SELECT * FROM FeedBack_ ";
+
+            try
+            {
+                SqlDataReader dr = sqlCom.ExecuteReader();
+
+                //Enquanto for possível continuar a leitura das linhas que foram retornadas na consulta, execute.
+                while (dr.Read())
+                {
+                    int id = (int)dr["Id"];
+                    string name = (string)dr["Name"];
+                    string tel = (string)dr["Telefone"];
+                    string email = (string)dr["Email"];
+                    string cpf = (string)dr["Cpf"];
+                    string atendimento = (string)dr["Atendimento"];
+                    string sugestao = (string)dr["Sugestao"];
+
+
+                    ListViewItem lv = new ListViewItem(id.ToString());
+                    lv.SubItems.Add(name);
+                    lv.SubItems.Add(tel);
+                    lv.SubItems.Add(email);
+                    lv.SubItems.Add(cpf);
+                    lv.SubItems.Add(atendimento);
+                    lv.SubItems.Add(sugestao);
+                    listView1.Items.Add(lv);
+
+                }
+                dr.Close();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            finally
+            {
+                conn.CloseConnection();
+            }
+        }
+
 
         private void btnmessage_Click(object sender, EventArgs e)
         {
@@ -47,6 +96,8 @@ namespace forms1
             textBox2.Clear();
             txbAtendimento.Clear();
             txtSuges.Clear();
+
+            UpdateListView();   
 
             
 
