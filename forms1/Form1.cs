@@ -13,6 +13,7 @@ namespace forms1
 {
     public partial class Form1 : Form
     {
+        private int Id;
         public Form1()
         {
             InitializeComponent();
@@ -67,6 +68,8 @@ namespace forms1
         }
 
 
+        
+
         private void btnmessage_Click(object sender, EventArgs e)
         {
             Connection connection = new Connection();
@@ -97,9 +100,9 @@ namespace forms1
             txbAtendimento.Clear();
             txtSuges.Clear();
 
-            UpdateListView();   
+            UpdateListView();
 
-            
+
 
             //string name = txbName.Text;
             //string lblAten = txbAtendimento.Text;
@@ -115,9 +118,9 @@ namespace forms1
             //                 "\nCPF: " + register +
             //                 "\nAtendimento: " + lblAten +
             //                 "\nSugestão: " + LblSugestao;
-                           
-                             
-            
+
+
+
             //MessageBox.Show(
             //    message,
             //    " Algo esta errado. ",
@@ -149,6 +152,70 @@ namespace forms1
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+            Connection connection = new Connection();
+            SqlCommand sqlCommand = new SqlCommand();
+
+            sqlCommand.Connection = connection.ReturnConnection();
+            sqlCommand.CommandText = @"UPDATE FeedBack_ SET
+            Name = @name, 
+            Telefone = @Telefone,
+            Email = @Email, 
+            Cpf = @cpf,
+            Atendimeno = @atendimento,
+            Sugestao = @sugestao
+            WHERE Id = @id";
+
+            sqlCommand.Parameters.AddWithValue("@name", txbName.Text);
+            sqlCommand.Parameters.AddWithValue("@telefone", MtbTelefone.Text);
+            sqlCommand.Parameters.AddWithValue("@email", textBox3.Text);
+            sqlCommand.Parameters.AddWithValue("@cpf", textBox2.Text);
+            sqlCommand.Parameters.AddWithValue("@atendimento", txbAtendimento.Text);
+            sqlCommand.Parameters.AddWithValue("@sugestao", txtSuges.Text);
+            sqlCommand.Parameters.AddWithValue("@ID", txtSuges.Text);
+
+            sqlCommand.ExecuteNonQuery();
+
+            MessageBox.Show("Cadastro com sucesso",
+                "AVISO",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+
+            txbName.Clear();
+            MtbTelefone.Clear();
+            textBox3.Clear();
+            textBox2.Clear();
+            txbAtendimento.Clear();
+            txtSuges.Clear();
+
+            UpdateListView();
+
+
+
+
+        }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+            int index;
+            index = listView1.FocusedItem.Index;
+            Id = int.Parse(listView1.Items[index].SubItems[0].Text);
+            txbName.Text = listView1.Items[index].SubItems[1].Text;
+            textBox3.Text = listView1.Items[index].SubItems[2].Text;
+            MtbTelefone.Text = listView1.Items[index].SubItems[3].Text;
+            textBox2.Text = listView1.Items[index].SubItems[4].Text;
+            txbAtendimento.Text = listView1.Items[index].SubItems[5].Text;
+            txtSuges.Text = listView1.Items[index].SubItems[6].Text;
+
+
 
         }
     }

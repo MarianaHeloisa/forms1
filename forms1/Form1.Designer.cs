@@ -39,7 +39,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.LblTelefone = new System.Windows.Forms.Label();
             this.MtbTelefone = new System.Windows.Forms.MaskedTextBox();
-            this.btnmessage = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMail = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -51,6 +50,8 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnmessage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblProntuario
@@ -145,17 +146,6 @@
             this.MtbTelefone.Size = new System.Drawing.Size(102, 20);
             this.MtbTelefone.TabIndex = 11;
             // 
-            // btnmessage
-            // 
-            this.btnmessage.Image = global::forms1.Properties.Resources.desenhos_de_stitch_para_colorir_capa_2;
-            this.btnmessage.Location = new System.Drawing.Point(371, 38);
-            this.btnmessage.Name = "btnmessage";
-            this.btnmessage.Size = new System.Drawing.Size(317, 211);
-            this.btnmessage.TabIndex = 10;
-            this.btnmessage.Text = "clique aqui";
-            this.btnmessage.UseVisualStyleBackColor = true;
-            this.btnmessage.Click += new System.EventHandler(this.btnmessage_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -199,6 +189,7 @@
             this.listView1.TabIndex = 15;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -228,11 +219,33 @@
             // 
             this.columnHeader7.Text = "SUGESTAO";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(468, 164);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(220, 89);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "editar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnmessage
+            // 
+            this.btnmessage.Image = global::forms1.Properties.Resources.download_feed;
+            this.btnmessage.Location = new System.Drawing.Point(468, 12);
+            this.btnmessage.Name = "btnmessage";
+            this.btnmessage.Size = new System.Drawing.Size(220, 132);
+            this.btnmessage.TabIndex = 10;
+            this.btnmessage.Text = "clique aqui";
+            this.btnmessage.UseVisualStyleBackColor = true;
+            this.btnmessage.Click += new System.EventHandler(this.btnmessage_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.lblMail);
@@ -282,6 +295,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.Button button1;
     }
 }
 

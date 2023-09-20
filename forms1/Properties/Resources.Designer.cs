@@ -83,6 +83,16 @@ namespace forms1.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap download_feed {
+            get {
+                object obj = ResourceManager.GetObject("download feed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap stitch_rasgando_papel_1920x1080_234e1a3f {
             get {
                 object obj = ResourceManager.GetObject("stitch-rasgando-papel-1920x1080_234e1a3f", resourceCulture);

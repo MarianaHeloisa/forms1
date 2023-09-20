@@ -90,5 +90,8 @@
   <ItemGroup>
     <None Include="Resources\desenhos-de-stitch-para-colorir-capa-2.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download feed.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
