@@ -27,7 +27,7 @@ namespace forms1
             SqlCommand sqlCom = new SqlCommand();
 
             sqlCom.Connection = conn.ReturnConnection();
-            sqlCom.CommandText = "SELECT * FROM FeedBack_ ";
+            sqlCom.CommandText = "SELECT * FROM FeedBack_";
 
             try
             {
@@ -37,10 +37,10 @@ namespace forms1
                 while (dr.Read())
                 {
                     int id = (int)dr["Id"];
-                    string name = (string)dr["Name"];
+                    string name = (string)dr["Nome"];
                     string tel = (string)dr["Telefone"];
                     string email = (string)dr["Email"];
-                    string cpf = (string)dr["Cpf"];
+                    string cpf = (string)dr["CPF"];
                     string atendimento = (string)dr["Atendimento"];
                     string sugestao = (string)dr["Sugestao"];
 
@@ -132,7 +132,7 @@ namespace forms1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            UpdateListView();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -164,11 +164,11 @@ namespace forms1
 
             sqlCommand.Connection = connection.ReturnConnection();
             sqlCommand.CommandText = @"UPDATE FeedBack_ SET
-            Name = @name, 
+            Nome = @name, 
             Telefone = @Telefone,
             Email = @Email, 
-            Cpf = @cpf,
-            Atendimeno = @atendimento,
+            CPF = @cpf,
+            Atendimento = @atendimento,
             Sugestao = @sugestao
             WHERE Id = @id";
 
@@ -178,11 +178,11 @@ namespace forms1
             sqlCommand.Parameters.AddWithValue("@cpf", textBox2.Text);
             sqlCommand.Parameters.AddWithValue("@atendimento", txbAtendimento.Text);
             sqlCommand.Parameters.AddWithValue("@sugestao", txtSuges.Text);
-            sqlCommand.Parameters.AddWithValue("@ID", txtSuges.Text);
+            sqlCommand.Parameters.AddWithValue("@ID", Id);
 
             sqlCommand.ExecuteNonQuery();
 
-            MessageBox.Show("Cadastro com sucesso",
+            MessageBox.Show("Atualizado com sucesso",
                 "AVISO",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
@@ -214,6 +214,53 @@ namespace forms1
             textBox2.Text = listView1.Items[index].SubItems[4].Text;
             txbAtendimento.Text = listView1.Items[index].SubItems[5].Text;
             txtSuges.Text = listView1.Items[index].SubItems[6].Text;
+
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            Connection connection = new Connection();
+            SqlCommand sqlCommand = new SqlCommand();
+
+            sqlCommand.Connection = connection.ReturnConnection();
+            sqlCommand.CommandText = @"DELETE FROM FeedBack_ WHERE Id = @id";
+            sqlCommand.Parameters.AddWithValue("@id", Id);
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Erro: Problemas ao excluir usuário no banco.\n" + err.Message);
+            }
+            finally
+            {
+                connection.CloseConnection();
+
+
+                txbName.Clear();
+                MtbTelefone.Clear();
+                textBox3.Clear();
+                textBox2.Clear();
+                txbAtendimento.Clear();
+                txtSuges.Clear();
+
+                UpdateListView();
+
+
+
+            }
+
+
+
+
+
+
+
+
 
 
 
