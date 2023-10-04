@@ -68,7 +68,7 @@ namespace forms1
         }
 
 
-        
+
 
         private void btnmessage_Click(object sender, EventArgs e)
         {
@@ -222,48 +222,37 @@ namespace forms1
         private void button2_Click(object sender, EventArgs e)
         {
 
-            Connection connection = new Connection();
-            SqlCommand sqlCommand = new SqlCommand();
+            UsuarioDAO DadosUsuario = new UsuarioDAO();
+            DadosUsuario.DeleteUsuario(Id);
 
-            sqlCommand.Connection = connection.ReturnConnection();
-            sqlCommand.CommandText = @"DELETE FROM FeedBack_ WHERE Id = @id";
-            sqlCommand.Parameters.AddWithValue("@id", Id);
-            try
-            {
-                sqlCommand.ExecuteNonQuery();
-            }
-            catch (Exception err)
-            {
-                throw new Exception("Erro: Problemas ao excluir usuário no banco.\n" + err.Message);
-            }
-            finally
-            {
-                connection.CloseConnection();
+            txbName.Clear();
+            MtbTelefone.Clear();
+            textBox3.Clear();
+            textBox2.Clear();
+            txbAtendimento.Clear();
+            txtSuges.Clear();
 
+            UpdateListView();
 
-                txbName.Clear();
-                MtbTelefone.Clear();
-                textBox3.Clear();
-                textBox2.Clear();
-                txbAtendimento.Clear();
-                txtSuges.Clear();
-
-                UpdateListView();
-
-
-
-            }
-
-
-
-
-
-
-
-
+            MessageBox.Show("Deletado com sucesso",
+                "AVISO",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
 
 
 
         }
+
+
+
+
+
+    
+
+
+    
+
+
+        }
     }
-}
+
