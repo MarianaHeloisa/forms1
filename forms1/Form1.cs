@@ -23,48 +23,31 @@ namespace forms1
         {
             listView1.Items.Clear();
 
-            Connection conn = new Connection();
-            SqlCommand sqlCom = new SqlCommand();
-
-            sqlCom.Connection = conn.ReturnConnection();
-            sqlCom.CommandText = "SELECT * FROM FeedBack_";
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            List<Usuario> usuarios = usuarioDAO.SelectUsuario();
 
             try
             {
-                SqlDataReader dr = sqlCom.ExecuteReader();
-
-                //Enquanto for possível continuar a leitura das linhas que foram retornadas na consulta, execute.
-                while (dr.Read())
+                foreach (Usuario usuario in usuarios)
                 {
-                    int id = (int)dr["Id"];
-                    string name = (string)dr["Nome"];
-                    string tel = (string)dr["Telefone"];
-                    string email = (string)dr["Email"];
-                    string cpf = (string)dr["CPF"];
-                    string atendimento = (string)dr["Atendimento"];
-                    string sugestao = (string)dr["Sugestao"];
 
-
-                    ListViewItem lv = new ListViewItem(id.ToString());
-                    lv.SubItems.Add(name);
-                    lv.SubItems.Add(tel);
-                    lv.SubItems.Add(email);
-                    lv.SubItems.Add(cpf);
-                    lv.SubItems.Add(atendimento);
-                    lv.SubItems.Add(sugestao);
+                    ListViewItem lv = new ListViewItem(usuario.Id.ToString());
+                    lv.SubItems.Add(usuario.Name);
+                    lv.SubItems.Add(usuario.Telefone);
+                    lv.SubItems.Add(usuario.Email);
+                    lv.SubItems.Add(usuario.Cpf);
+                    lv.SubItems.Add(usuario.Atendimento);
+                    lv.SubItems.Add(usuario.Sugestao);
                     listView1.Items.Add(lv);
 
                 }
-                dr.Close();
+               
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
-            finally
-            {
-                conn.CloseConnection();
-            }
+           
         }
 
 
@@ -72,25 +55,34 @@ namespace forms1
 
         private void btnmessage_Click(object sender, EventArgs e)
         {
-            Connection connection = new Connection();
-            SqlCommand sqlCommand = new SqlCommand();
+            try
+            {
+                Usuario usuario = new Usuario(
+                    txbName.Text,
+                    MtbTelefone.Text,
+                    textBox3.Text,
+                    textBox2.Text,
+                    txbAtendimento.Text,
+                    txtSuges.Text
+                   
+                    );
 
-            sqlCommand.Connection = connection.ReturnConnection();
-            sqlCommand.CommandText = @"INSERT INTO FeedBack_ VALUES (@name, @Telefone, @Email, @cpf, @atendimento, @sugestao)";
+                UsuarioDAO DadosUsuario = new UsuarioDAO();
+                DadosUsuario.InsertUsuarioDAO(usuario);
 
-            sqlCommand.Parameters.AddWithValue("@name", txbName.Text);
-            sqlCommand.Parameters.AddWithValue("@telefone", MtbTelefone.Text);
-            sqlCommand.Parameters.AddWithValue("@email", textBox3.Text);
-            sqlCommand.Parameters.AddWithValue("@cpf", textBox2.Text);
-            sqlCommand.Parameters.AddWithValue("@atendimento", txbAtendimento.Text);
-            sqlCommand.Parameters.AddWithValue("@sugestao", txtSuges.Text);
+                MessageBox.Show("Cadastro com sucesso",
+                    "AVISO",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
-            sqlCommand.ExecuteNonQuery();
 
-            MessageBox.Show("Cadastro com sucesso",
-                "AVISO",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+           
 
 
             txbName.Clear();
@@ -157,35 +149,33 @@ namespace forms1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Usuario usuario = new Usuario(
+                    txbName.Text,
+                    MtbTelefone.Text,
+                    textBox3.Text,
+                    textBox2.Text,
+                    txbAtendimento.Text,
+                    txtSuges.Text
+                    );
 
+                UsuarioDAO DadosUsuario = new UsuarioDAO();
+                DadosUsuario.InsertUsuarioDAO(usuario);
 
-            Connection connection = new Connection();
-            SqlCommand sqlCommand = new SqlCommand();
-
-            sqlCommand.Connection = connection.ReturnConnection();
-            sqlCommand.CommandText = @"UPDATE FeedBack_ SET
-            Nome = @name, 
-            Telefone = @Telefone,
-            Email = @Email, 
-            CPF = @cpf,
-            Atendimento = @atendimento,
-            Sugestao = @sugestao
-            WHERE Id = @id";
-
-            sqlCommand.Parameters.AddWithValue("@name", txbName.Text);
-            sqlCommand.Parameters.AddWithValue("@telefone", MtbTelefone.Text);
-            sqlCommand.Parameters.AddWithValue("@email", textBox3.Text);
-            sqlCommand.Parameters.AddWithValue("@cpf", textBox2.Text);
-            sqlCommand.Parameters.AddWithValue("@atendimento", txbAtendimento.Text);
-            sqlCommand.Parameters.AddWithValue("@sugestao", txtSuges.Text);
-            sqlCommand.Parameters.AddWithValue("@ID", Id);
-
-            sqlCommand.ExecuteNonQuery();
-
-            MessageBox.Show("Atualizado com sucesso",
+                MessageBox.Show("Atualizado com sucesso",
                 "AVISO",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+
+
 
 
             txbName.Clear();
