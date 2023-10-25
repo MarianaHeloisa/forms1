@@ -39,30 +39,30 @@ namespace forms1
                    (string)dr["Atendimento"],
                    (string)dr["Sugestao"]
                    );
-                    
-                 usuarios.Add(usuario);
+
+                    usuarios.Add(usuario);
 
                 }
                 dr.Close();
-                return usuarios;// retornar a lista
+                
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);
+               throw new Exception (err.Message);
             }
             finally
             {
                 conn.CloseConnection();
             }
-            return null;
+            return usuarios;
         }
-    }
 
 
 
 
 
-        public void InsertUsuarioDAO( Usuario usuario)
+
+        public void InsertUsuarioDAO(Usuario usuario)
 
         {
             Connection connection = new Connection();
@@ -135,11 +135,12 @@ namespace forms1
                 connection.CloseConnection();
 
 
-                
+
 
             }
         }
-}
+    }
 
+}
 
 
