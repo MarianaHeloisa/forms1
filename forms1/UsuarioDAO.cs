@@ -11,6 +11,46 @@ namespace forms1
 {
     internal class UsuarioDAO
     {
+        public bool LoginUsuario(string CPF, string Senha)
+        {
+            Connection conn = new Connection();
+            SqlCommand sqlCom = new SqlCommand();
+
+            sqlCom.Connection = conn.ReturnConnection();
+            sqlCom.CommandText = "SELECT * FROM FeedBack_  WHERE" + " FeedBack_ = @CPF AND Senha = @Senha"; 
+
+            sqlCom.Parameters.AddWithValue("@CPF", CPF);
+            sqlCom.Parameters.AddWithValue("@Senha", Senha);
+
+
+
+            try
+            {
+                SqlDataReader dr = sqlCom.ExecuteReader();
+                if (dr.Read())
+                {
+
+                    dr.Close();
+                    return true;
+                }
+
+
+                dr.Close();
+                return false;
+
+            }
+            catch (Exception err)
+            {
+               throw new Exception (err.Message);
+            }
+            finally
+            {
+                conn.CloseConnection();
+            }
+           
+        }
+
+
         public List<Usuario> SelectUsuario()
         {
 
@@ -44,11 +84,11 @@ namespace forms1
 
                 }
                 dr.Close();
-                
+
             }
             catch (Exception err)
             {
-               throw new Exception (err.Message);
+                throw new Exception(err.Message);
             }
             finally
             {
@@ -56,9 +96,6 @@ namespace forms1
             }
             return usuarios;
         }
-
-
-
 
 
 

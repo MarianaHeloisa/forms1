@@ -73,7 +73,7 @@
             // 
             // txbAtendimento
             // 
-            this.txbAtendimento.Location = new System.Drawing.Point(31, 319);
+            this.txbAtendimento.Location = new System.Drawing.Point(35, 319);
             this.txbAtendimento.Name = "txbAtendimento";
             this.txbAtendimento.Size = new System.Drawing.Size(102, 20);
             this.txbAtendimento.TabIndex = 7;
@@ -90,7 +90,7 @@
             // lblAten
             // 
             this.lblAten.AutoSize = true;
-            this.lblAten.Location = new System.Drawing.Point(29, 303);
+            this.lblAten.Location = new System.Drawing.Point(39, 303);
             this.lblAten.Name = "lblAten";
             this.lblAten.Size = new System.Drawing.Size(154, 13);
             this.lblAten.TabIndex = 6;
@@ -100,7 +100,7 @@
             // LblSugestao
             // 
             this.LblSugestao.AutoSize = true;
-            this.LblSugestao.Location = new System.Drawing.Point(28, 359);
+            this.LblSugestao.Location = new System.Drawing.Point(40, 359);
             this.LblSugestao.Name = "LblSugestao";
             this.LblSugestao.Size = new System.Drawing.Size(168, 13);
             this.LblSugestao.TabIndex = 8;
@@ -108,7 +108,7 @@
             // 
             // txtSuges
             // 
-            this.txtSuges.Location = new System.Drawing.Point(31, 375);
+            this.txtSuges.Location = new System.Drawing.Point(35, 375);
             this.txtSuges.Name = "txtSuges";
             this.txtSuges.Size = new System.Drawing.Size(102, 20);
             this.txtSuges.TabIndex = 9;
