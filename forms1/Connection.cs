@@ -21,7 +21,7 @@ namespace forms1
         //Data Source=LAPTOP-9TN8R1CF\SQLEXPRESS;Initial Catalog=InvestimentosMais;Integrated Security=True
         string stringConnection = @"Data Source="
                 + Environment.MachineName +
-                @";Initial Catalog=" +
+                @"\SQLEXPRESS;Initial Catalog=" +
                 DataBase + ";Integrated Security=true";
 
         con = new SqlConnection(stringConnection);

@@ -80,7 +80,6 @@ namespace forms1
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
-                Nome.Clear();
                 Cep.Clear();
                 Numero.Clear();
                 Endereço.Clear();
